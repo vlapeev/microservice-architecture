@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-architecture-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lvd-ma
+  template:
+    metadata:
+      labels:
+        app: lvd-ma
+    spec:
+      containers:
+        - name: microservice-architecture-application
+          image: lapeevvd/microservice-architecture:latest
+          ports:
+            - name: web
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 2
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /health
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 2
