@@ -1,0 +1,14 @@
+container:
+  image: lapeevvd/microservice-architecture
+  version: latest
+  port: 8080
+
+deployment:
+  replicaCount: 2
+
+service:
+  port: 8000
+
+ingress:
+  host: arch.homework
+  path: /otus/lapeevvd($|/)(.*)
