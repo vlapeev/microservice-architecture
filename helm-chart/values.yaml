@@ -4,11 +4,17 @@ container:
   port: 8080
 
 deployment:
-  replicaCount: 2
+  replicaCount: 1 # unfortunately vm can't support 2 application pods + db-pod, so replicaCount set to 1
 
 service:
   port: 8000
 
 ingress:
   host: arch.homework
-  path: /otus/lapeevvd($|/)(.*)
+  path: /
+
+postgresql:
+  enabled: true
+  postgresqlDatabase: microservice-architecture-db
+  postgresqlUsername: postgres
+  postgresqlPassword: postgres

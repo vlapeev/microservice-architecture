@@ -17,11 +17,16 @@ spec:
           image: "{{ .Values.container.image }}:{{ .Values.container.version }}"
           ports:
             - containerPort: {{ .Values.container.port }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "helm-chart.fullname" . }}-config-map
+            - secretRef:
+                name: {{ include "helm-chart.fullname" . }}-secret
           livenessProbe:
             httpGet:
               port: {{ .Values.container.port }}
               path: /
-            initialDelaySeconds: 10
+            initialDelaySeconds: 15
             periodSeconds: 5
             timeoutSeconds: 2
           readinessProbe:
