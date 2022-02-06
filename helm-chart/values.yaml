@@ -4,7 +4,7 @@ container:
   port: 8080
 
 deployment:
-  replicaCount: 1 # unfortunately vm can't support 2 application pods + db-pod, so replicaCount set to 1
+  replicaCount: 2
 
 service:
   port: 8000

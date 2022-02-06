@@ -14,3 +14,4 @@ spec:
                 name: {{ include "helm-chart.fullname" . }}-service
                 port:
                   number: {{ .Values.service.port }}
+  ingressClassName: nginx
